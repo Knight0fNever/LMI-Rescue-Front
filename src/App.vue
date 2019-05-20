@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <MainLogo />
-    <Seats class="seats" />
+    <MainLogo/>
+    <Seats class="seats"/>
   </div>
 </template>
 
@@ -15,29 +15,13 @@ export default {
     MainLogo,
     Seats
   },
+  data: function () {
+    return {
+      seats: []
+    }
+  },
   mounted() {
-    var token = process.env.VUE_APP_TOKEN;
-    console.log(token);
-    var data = JSON.stringify({
-      TOKEN: "28c19520-f068-472a-a3c9-b76474af4788",
-      seat: "ithelp",
-      user: ""
-    });
-
-    var xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
-
-    xhr.addEventListener("readystatechange", function() {
-      if (this.readyState === 4) {
-        console.log(this.responseText);
-      }
-    });
-
-    xhr.open("GET", "http://localhost:3000/seats");
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.setRequestHeader("Accept", "*/*");
-
-    xhr.send(data);
+    this.$store.commit('loadSeats');
   }
 };
 </script>

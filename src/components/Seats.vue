@@ -2,13 +2,13 @@
   <div class="seats">
     <div class="container">
       <div class="row">
-        <div class="col-4">
+        <div class="col-4" v-for="seat in seats" v-bind:key="seat.name">
           <div
             class="card"
             style="width: 18rem;"
           >
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
+              <h5 class="card-title">{{this.$store.state.seats[0].name}}</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
               <a
                 href="#"
@@ -17,8 +17,6 @@
             </div>
           </div>
         </div>
-        <div class="col-4">Col 2</div>
-        <div class="col-4">Col 3</div>
       </div>
     </div>
   </div>
@@ -26,7 +24,19 @@
 
 <script>
 export default {
-  name: "Seats"
+  name: "Seats",
+  data: function() {
+    return {
+    }
+  },
+  mounted() {
+  },
+  computed: {
+    seats() {
+      var seatArray = this.$store.state.seats;
+      return seatArray;
+    }
+  }
 };
 </script>
 
